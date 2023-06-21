@@ -8,6 +8,7 @@ import { ReactComponent as Todo } from "../public/icon-todo.svg";
 import { ReactComponent as Calendar } from "../public/icon-calendar.svg";
 import { ReactComponent as Reminders } from "../public/icon-reminders.svg";
 import { ReactComponent as Planning } from "../public/icon-planning.svg";
+import { ReactComponent as HamburgerIcon } from "../public/icon-menu.svg";
 
 const handleOpenFeatures = (e, isFeaturesOpen, setIsFeaturesOpen) => {
   const linksCardClosing = document.querySelector(".links-card-container._1");
@@ -48,4 +49,5 @@ export {
   Calendar,
   Reminders,
   Planning,
+  HamburgerIcon,
 };

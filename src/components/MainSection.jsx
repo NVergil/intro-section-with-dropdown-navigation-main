@@ -22,6 +22,7 @@ const MainSection = () => {
       <aside>
         <picture>
           <img src="/image-hero-desktop.png" alt="hero-desk" className="hero-desk" />
+          <img src="/image-hero-mobile.png" alt="hero-mobile" className="hero-mobile" />
         </picture>
       </aside>
     </section>

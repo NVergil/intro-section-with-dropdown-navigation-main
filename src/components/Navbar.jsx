@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import LinksCard from "./LinksCard";
 import {
   handleOpenFeatures,
@@ -9,12 +9,34 @@ import {
   Calendar,
   Reminders,
   Planning,
+  HamburgerIcon,
 } from "../utils";
+import DesktopNavbar from "./DesktopNavbar";
+import MobileNavbar from "./MobileNavbar";
 
 const Navbar = () => {
   const [isFeaturesOpen, setIsFeaturesOpen] = useState(false);
   const [isCompanyOpen, setIsCompanyOpen] = useState(false);
+  const [menu, setMenu] = useState(false);
 
+  useEffect(() => {
+    const handleRezise = () => {
+      if (window.innerWidth <= 900) {
+        setMenu(true);
+      } else {
+        setMenu(false);
+      }
+    };
+    window.addEventListener("resize", handleRezise);
+
+    const mql = window.matchMedia("(max-width: 900px)");
+
+    if (mql.matches) {
+      setMenu(true);
+    } else {
+      setMenu(false);
+    }
+  }, []);
   const LinksData_1 = [
     {
       title: "Todo List",
@@ -51,37 +73,24 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <div className="nav_1">
-        <img src="/logo.svg" alt="" className="logo" />
-        <div
-          className="inner-nav_1"
-          onClick={(e) =>
-            handleOpenFeatures(e, isFeaturesOpen, setIsFeaturesOpen)
-          }
-        >
-          Features
-          {isFeaturesOpen ? <ArrowDownIcon /> : <ArrowUpIcon />}
-          {isFeaturesOpen && <LinksCard links={LinksData_1} styleClass="_1" />}
-        </div>
-        <div
-          className="inner-nav_2"
-          onClick={(e) => handleOpenCompany(e, isCompanyOpen, setIsCompanyOpen)}
-        >
-          Company
-          {isCompanyOpen ? <ArrowDownIcon /> : <ArrowUpIcon />}
-          {isCompanyOpen && <LinksCard links={LinksData_2} styleClass="_2" />}
-        </div>
-        <a href="#careers">Careers</a>
-        <a href="#about">About</a>
-      </div>
-      <div className="nav_2">
-        <button className="login" type="button">
-          Login
-        </button>
-        <button className="register" type="button">
-          Register
-        </button>
-      </div>
+      {menu ? (
+        <MobileNavbar HamburgerIcon={HamburgerIcon} />
+      ) : (
+        <DesktopNavbar
+          handleOpenFeatures={handleOpenFeatures}
+          isFeaturesOpen={isFeaturesOpen}
+          setIsFeaturesOpen={setIsFeaturesOpen}
+          ArrowDownIcon={ArrowDownIcon}
+          ArrowUpIcon={ArrowUpIcon}
+          LinksCard={LinksCard}
+          LinksData_1={LinksData_1}
+          handleOpenCompany={handleOpenCompany}
+          isCompanyOpen={isCompanyOpen}
+          setIsCompanyOpen={setIsCompanyOpen}
+          LinksData_2={LinksData_2}
+        />
+      )}
+      
     </nav>
   );
 };
