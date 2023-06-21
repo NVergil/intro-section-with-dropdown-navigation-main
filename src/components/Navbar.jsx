@@ -3,6 +3,8 @@ import LinksCard from "./LinksCard";
 import {
   handleOpenFeatures,
   handleOpenCompany,
+  handleCloseMenu,
+  handleOpenMenu,
   ArrowUpIcon,
   ArrowDownIcon,
   Todo,
@@ -10,6 +12,7 @@ import {
   Reminders,
   Planning,
   HamburgerIcon,
+  CloseIcon,
 } from "../utils";
 import DesktopNavbar from "./DesktopNavbar";
 import MobileNavbar from "./MobileNavbar";
@@ -74,7 +77,23 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       {menu ? (
-        <MobileNavbar HamburgerIcon={HamburgerIcon} />
+        <MobileNavbar
+          HamburgerIcon={HamburgerIcon}
+          CloseIcon={CloseIcon}
+          isFeaturesOpen={isFeaturesOpen}
+          setIsFeaturesOpen={setIsFeaturesOpen}
+          ArrowDownIcon={ArrowDownIcon}
+          ArrowUpIcon={ArrowUpIcon}
+          LinksCard={LinksCard}
+          LinksData_1={LinksData_1}
+          isCompanyOpen={isCompanyOpen}
+          setIsCompanyOpen={setIsCompanyOpen}
+          LinksData_2={LinksData_2}
+          handleOpenFeatures={handleOpenFeatures}
+          handleOpenCompany={handleOpenCompany}
+          handleOpenMenu={handleOpenMenu}
+          handleCloseMenu={handleCloseMenu}
+        />
       ) : (
         <DesktopNavbar
           handleOpenFeatures={handleOpenFeatures}
@@ -90,7 +109,6 @@ const Navbar = () => {
           LinksData_2={LinksData_2}
         />
       )}
-      
     </nav>
   );
 };

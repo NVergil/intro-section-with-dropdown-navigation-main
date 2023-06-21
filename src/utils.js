@@ -1,14 +1,15 @@
-import { ReactComponent as ArrowUpIcon } from "../public/icon-arrow-up.svg";
-import { ReactComponent as ArrowDownIcon } from "../public/icon-arrow-down.svg";
-import { ReactComponent as Databiz } from "../public/client-databiz.svg";
-import { ReactComponent as Audiophile } from "../public/client-audiophile.svg";
-import { ReactComponent as Meet } from "../public/client-meet.svg";
-import { ReactComponent as Maker } from "../public/client-maker.svg";
-import { ReactComponent as Todo } from "../public/icon-todo.svg";
-import { ReactComponent as Calendar } from "../public/icon-calendar.svg";
-import { ReactComponent as Reminders } from "../public/icon-reminders.svg";
-import { ReactComponent as Planning } from "../public/icon-planning.svg";
-import { ReactComponent as HamburgerIcon } from "../public/icon-menu.svg";
+import { ReactComponent as ArrowUpIcon } from "./assets/icon-arrow-up.svg";
+import { ReactComponent as ArrowDownIcon } from "./assets/icon-arrow-down.svg";
+import { ReactComponent as Databiz } from "./assets/client-databiz.svg";
+import { ReactComponent as Audiophile } from "./assets/client-audiophile.svg";
+import { ReactComponent as Meet } from "./assets/client-meet.svg";
+import { ReactComponent as Maker } from "./assets/client-maker.svg";
+import { ReactComponent as Todo } from "./assets/icon-todo.svg";
+import { ReactComponent as Calendar } from "./assets/icon-calendar.svg";
+import { ReactComponent as Reminders } from "./assets/icon-reminders.svg";
+import { ReactComponent as Planning } from "./assets/icon-planning.svg";
+import { ReactComponent as HamburgerIcon } from "./assets/icon-menu.svg";
+import { ReactComponent as CloseIcon } from "./assets/icon-close-menu.svg";
 
 const handleOpenFeatures = (e, isFeaturesOpen, setIsFeaturesOpen) => {
   const linksCardClosing = document.querySelector(".links-card-container._1");
@@ -36,9 +37,24 @@ const handleOpenCompany = (e, isCompanyOpen, setIsCompanyOpen) => {
   }
 };
 
+const handleCloseMenu = (setIsOpen, main) => {
+  const navbar = document.querySelector(".navbar-mobile-container");
+  navbar.classList.remove("mobile-menu-active");
+  setTimeout(() => {
+    setIsOpen(false);
+    main.style.overflow = "auto";
+  }, 100);
+};
+const handleOpenMenu = (setIsOpen, main) => {
+  main.style.overflow = "hidden";
+  setIsOpen(true);
+};
+
 export {
   handleOpenFeatures,
   handleOpenCompany,
+  handleCloseMenu,
+  handleOpenMenu,
   ArrowUpIcon,
   ArrowDownIcon,
   Databiz,
@@ -50,4 +66,5 @@ export {
   Reminders,
   Planning,
   HamburgerIcon,
+  CloseIcon,
 };
